@@ -54,7 +54,54 @@ public class Eight {
         }
     }
 
-    // Interface Extending Another Interface
+    // ENCAPSULATION: Encapsulation means wrapping data (variables) and the methods 
+    // that operate on that data inside a class, while controlling how the data can be 
+    // accessed from outside the class.
+    // The main purpose is data protection and controlled access.
+    // The idea behind encapsulation: The data is protected, and access to it happens through controlled methods.
+
+    // Encapsulation: getters and setters
+    static class Employee{
+        private int id;
+        private String name;
+
+        public void setIdName(int id, String name){
+            this.id = id;
+            this.name = name;
+        }
+
+        public int getId(){
+            return id;
+        }
+
+        public String getName(){
+            return name;
+        }
+    }
+
+    // POLYMORPHISM: means poly - many, morphism - forms. So, polymorphism means "one thing taking many forms."
+    // In Java, polymorphism mainly allows the same method call or reference to behave differently depending on the object involved.
+
+    static class Animal2 {
+        void sound() {
+            System.out.println("Animal makes a sound");
+        }
+    }
+
+    static class Dog2 extends Animal2 {
+        @Override
+        void sound() {
+            System.out.println("Dog barks");
+        }
+    }
+
+    static class Cat extends Animal2 {
+        @Override
+        void sound() {
+            System.out.println("Cat meows");
+        }
+    }
+
     public static void main(String[] args) {
         Drawable drawable = new Square();   // here the reference type is Drawable, but the actual object is Square
         drawable.draw();
@@ -65,5 +112,20 @@ public class Eight {
         // The reference says: I can access things defined by Animal.
         // The object says: At runtime, I am actually a Dog.
         animal.sound(); // calls Dog.sound(), this is runtime polymorphism.
+
+        // Encapsulation
+        Employee employee = new Employee();
+        // employee.id = 12; this gives error because it is a private variable
+        // employee.name = "dsaf"; this gives error because it is a private variable
+        employee.setIdName(12, "sdfsd");
+        System.out.println(employee.getId());
+        System.out.println(employee.getName());
+
+        // Polymorphism
+        Animal2 a1 = new Dog2();
+        Animal2 a2 = new Cat();
+
+        a1.sound();
+        a2.sound();
     }
 }
